@@ -1,0 +1,70 @@
+<!-- 
+Authors: Ryan Reed, Tyler Hinthorn
+Citation for handlebars, dynamically adding, deleting, 
+and displaying data, filling dropdowns, and search box functionality:
+Copied from OSU CS340 (Intro to Databases) course: 
+Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
+-->
+
+<!-- needed for using jQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+{{!-- product-invoice table --}}
+<table id ="product-invoice-table">
+
+    <thead>
+        <h2>Product Invoice Data Table</h2>
+        {{!-- for first row, print each key of the row object as a header cell --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each data}}
+        <tr data-value={{this.invoice_id}}>
+            <td>{{this.invoice_id}}</td>
+            <td>{{this.product_id}}</td>
+            <td>{{this.total_amount}}</td>
+            <td><button onclick="deleteProductInvoice({{this.invoice_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{!-- link to script for handling product-invoice deletion --}}
+<script src="./js/delete_product_invoice.js"></script>
+
+<h3>Add a product invoice</h3>
+<p>To add a new product invoice, please enter the information below and click 'Submit'</p>
+{{!-- Form to add an entry to the product-invoice table --}}
+<form id="add-product-invoice-form-ajax">
+    <label for="input-invoice-id">Invoice: </label>
+    <select name="input-invoice-id" id="input-invoice-id">
+        <option value="">Select an Invoice by Date Placed</option>
+        {{#each invoices}}
+        <option value="{{this.invoice_id}}">{{this.date_placed}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-product-id">Product: </label>
+    <select name="input-product-id" id="input-product-id">
+        <option value="">Select a Product by Product Name</option>
+        {{#each products}}
+        <option value="{{this.product_id}}">{{this.product_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-total-amount">Total Amount of Items: </label>
+    <input type="number" placeholder="#" id="input-total-amount" name="input-total-amount">
+
+    <input type="submit">
+</form>
+
+{{!-- link to script for adding a product-invoice --}}
+<script type="text/javascript" src="./js/add_product_invoice.js"></script>

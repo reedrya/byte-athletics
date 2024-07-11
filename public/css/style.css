@@ -1,0 +1,91 @@
+/* Custom color variables */
+:root {
+    --darkGreyBackground: rgb(30, 28, 28);
+    --greenSubmitButton: #039b63;
+    --darkGreenSubmitButton: #006540;
+    --lightGrey: #3b3635;
+    --lightBorder: #a19898;
+    --placeholderGrey: #ffffffa7;
+    --beige: #f2f2f2;
+}
+
+/* Style the body */
+body{
+    background-color: var(--darkGreyBackground);
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: white;
+}
+
+/* Style the heading and paragraph text */
+h1, h2, h3, p {
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+/* Style placeholder text */
+::placeholder {
+    color: var(--placeholderGrey);
+}
+
+/* Style the input and select button */
+input, select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 12px 0;
+    display: inline-block;
+    border: 1px solid var(--lightBorder);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: var(--lightGrey);
+    color: white;
+}
+
+/* Pointer for drop-down lists and date fields */
+select, #input-date-placed {
+    cursor: pointer;
+}
+
+/* Style the submit button */
+input[type=submit] {
+    width: 100%;
+    background-color: var(--greenSubmitButton);
+    color: white;
+    padding: 14px 20px;
+    margin: 20px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Add a background color to the submit button on hover */
+input[type=submit]:hover {
+    background-color: var(--darkGreenSubmitButton);
+}
+
+/* Style the top navigation bar */
+.topnav{
+    overflow: hidden;
+    background-color: var(--lightGrey);
+}
+
+/* Style the links within top navigation bar */
+.topnav a{
+    float:left;
+    color: var(--beige);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 19px;
+}
+
+/* Style the hover on top navigation bar */
+.topnav a:hover{
+    background-color: var(--beige);
+    color: var(--lightGrey);
+}
+
+/* Style the form */
+form {
+    margin: 10px;
+}

@@ -1,0 +1,80 @@
+<!-- 
+Authors: Ryan Reed, Tyler Hinthorn
+Citation for handlebars, dynamically adding, deleting, 
+and displaying data, filling dropdowns, and search box functionality:
+Copied from OSU CS340 (Intro to Databases) course: 
+Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
+-->
+
+<!-- needed for using jQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+{{!-- product table --}}
+<table id="product-table">
+
+    <thead>
+        <h2>Product Data Table</h2>
+        {{!-- for first row, print each key of the row object as a header cell --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each data}}
+        <tr data-value={{this.product_id}}>
+            <td>{{this.product_id}}</td>
+            <td>{{this.category_id}}</td>
+            <td>{{this.product_type_id}}</td>
+            <td>{{this.product_name}}</td>
+            <td>{{this.inventory}}</td>
+            <td>{{this.price}}</td>
+            <td><button onclick="deleteProduct({{this.product_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{!-- link to script for handling product deletion --}}
+<script src="./js/delete_product.js"></script>
+
+<h3>Add a Product</h3>
+<p>To add a new product, please enter their information below and click 'Submit'.</p>
+{{!-- Form to add an entry to the customer table --}}
+<form id="add-product-form-ajax">
+
+    <label for="input-category">Category: </label>
+    <select name="input-category" id="input-category-ajax">
+        <option value="">Select a Sport</option>
+        {{#each categories}}
+        <option value="{{this.category_id}}">{{this.sport}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-product-type">Product Type: </label>
+    <select name="input-product-type" id="input-product-type-ajax">
+        <option value="">Select a Product Type</option>
+        {{#each product_types}}
+        <option value="{{this.product_type_id}}">{{this.item_type}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-product-name">Product Name: </label>
+    <input type="text" placeholder="Enter Product Name" name="input-product-name" id="input-product-name">
+
+    <label for="input-inventory">Amount in Inventory: </label>
+    <input type="number" placeholder="#" name="input-inventory" id="input-inventory">
+
+    <label for="input-price">Price: </label>
+    <input type="number" placeholder="USD ($)" name="input-price" id="input-price" step=".01">
+
+    <input type="submit">
+</form>
+
+{{!-- link to script for adding a product --}}
+<script src="./js/add_product.js"></script>

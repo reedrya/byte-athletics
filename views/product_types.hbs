@@ -1,0 +1,63 @@
+<!-- 
+Authors: Ryan Reed, Tyler Hinthorn
+Citation for handlebars, dynamically adding, deleting, 
+and displaying data, filling dropdowns, and search box functionality:
+Copied from OSU CS340 (Intro to Databases) course: 
+Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
+-->
+
+<!-- needed for using jQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+{{!-- product type table --}}
+<table id="product-type-table">
+
+    {{!-- Header section --}}
+    <thead>
+        <h2>Product Type Data Table</h2>
+        {{!-- for first row, print each key of the row object as a header cell --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each data}}
+        <tr data-value={{this.product_type_id}}>
+            <td>{{this.product_type_id}}</td>
+            <td>{{this.item_type}}</td>
+            <td>{{this.product_size}}</td>
+            <td>{{this.brand}}</td>
+            <td><button onclick="deleteProductType({{this.product_type_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{!-- link to script for handling product type deletion --}}
+<script src="./js/delete_product_type.js"></script>
+
+<h3>Add a Product Type</h3>
+<p>To add a new product type, please enter the information below and click 'Submit'</p>
+{{!-- Form to add an entry to the product type table --}}
+<form id="add-product-type-form-ajax">
+
+    <label for="input-item-type">Item type: </label>
+    <input type="text" placeholder="Apparel, Equipment, etc." name="input-item-type" id="input-item-type">
+
+    <label for="input-product-size">Size: </label>
+    <input type="text" placeholder="Enter Product Size" id="input-product-size" name="input-product-size">
+
+    <label for="input-brand">Brand: </label>
+    <input type="text" placeholder="Enter Brand" id="input-brand" name="input-brand">
+
+    <input type="submit">
+</form>
+
+{{!-- link to script for adding a product type --}}
+<script type="text/javascript" src="./js/add_product_type.js"></script>

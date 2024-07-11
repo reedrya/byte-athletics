@@ -1,0 +1,70 @@
+<!-- 
+Authors: Ryan Reed, Tyler Hinthorn
+Citation for handlebars, dynamically adding, deleting, 
+and displaying data, filling dropdowns, and search box functionality:
+Copied from OSU CS340 (Intro to Databases) course: 
+Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
+-->
+
+<!-- needed for using jQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+{{!-- invoice table --}}
+<table id="invoice-table">
+
+    <thead>
+        <h2>Invoice Data Table</h2>
+        {{!-- for first row, print each key of the row object as a header cell --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each data}}
+        <tr data-value={{this.invoice_id}}>
+            <td>{{this.invoice_id}}</td>
+            <td>{{this.customer_id}}</td>
+            <td>{{this.date_placed}}</td>
+            <td>${{this.total_price}}</td>
+            <td>{{this.order_status}}</td>
+            <td><button onclick="deleteInvoice({{this.invoice_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{!-- link to script for handling invoice deletion --}}
+<script src="./js/delete_invoice.js"></script>
+
+<h3>Add an Invoice</h3>
+<p>To add a new invoice, please enter the information below and click 'Submit'</p>
+{{!-- Form to add an entry to the invoice table --}}
+<form id="add-invoice-form-ajax">
+    <label for="input-customer-id">Customer: </label>
+    <select name="input-customer-id" id="input-customer-id">
+        <option value="">Select a Customer</option>
+        {{#each customers}}
+        <option value="{{this.customer_id}}">{{this.full_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-date-placed">Date Placed: </label>
+    <input type="datetime-local" name="input-date-placed" id="input-date-placed">
+
+    <label for="input-total-price">Total Order Price: </label>
+    <input type="number" placeholder="USD ($)" id="input-total-price" name="input-total-price" step=".01">
+
+    <label for="input-order-status">Order Status: </label>
+    <input type="text" placeholder="Shipped, Delivered, Pending, etc." name="input-order-status" id="input-order-status">
+
+    <input type="submit">
+</form>
+
+{{!-- link to script for adding an invoice --}}
+<script type="text/javascript" src="./js/add_invoice.js"></script>

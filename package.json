@@ -1,0 +1,20 @@
+{
+  "name": "cs340_step6",
+  "version": "1.0.0",
+  "description": "Demo webapp to manage relational database",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
+    "forever": "^4.0.3",
+    "handlebars": "^4.7.8",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.9.2"
+  },
+  "author": "Ryan Reed",
+  "license": "ISC"
+}

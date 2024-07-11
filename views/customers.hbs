@@ -1,0 +1,66 @@
+<!-- 
+Authors: Ryan Reed, Tyler Hinthorn
+Citation for handlebars, dynamically adding, deleting, 
+and displaying data, filling dropdowns, and search box functionality:
+Copied from OSU CS340 (Intro to Databases) course: 
+Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
+-->
+
+<!-- needed for using jQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+{{!-- customer table --}}
+<table id="customer-table">
+
+    <thead>
+        <h2>Customer Data Table</h2>
+        {{!-- for first row, print each key of the row object as a header cell --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each data}}
+        <tr data-value={{this.customer_id}}>
+            <td>{{this.customer_id}}</td>
+            <td>{{this.full_name}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.phone_number}}</td>
+            <td>{{this.shipping_address}}</td>
+            <td><button onclick="deleteCustomer({{this.customer_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{!-- link to script for handling customer deletion --}}
+<script src="./js/delete_customer.js"></script>
+
+<h3>Add Customer Info</h3>
+<p>To add a new customer, please enter their information below and click 'Submit'</p>
+{{!-- Form to add an entry to the customer table --}}
+<form id="add-customer-form-ajax">
+
+    <label for="input-full-name">Full Name: </label>
+    <input type="text" placeholder="First and Last" name="input-full-name" id="input-full-name">
+
+    <label for="input-email">Email: </label>
+    <input type="text" placeholder="emailaccount123@example.com" id="input-email" name="input-email">
+
+    <label for="input-phone-number">Phone Number: </label>
+    <input type="text" placeholder="(###) ###-####" id="input-phone-number" name="input-phone-number">
+
+    <label for="input-shipping-address">Shipping Address: </label>
+    <input type="text" placeholder="1234 Example St, Cupertino, CA, 94024" name="input-shipping-address" id="input-shipping-address">
+
+    <input type="submit">
+</form>
+
+{{!-- link to script for adding a customer --}}
+<script type="text/javascript" src="./js/add_customer.js"></script>

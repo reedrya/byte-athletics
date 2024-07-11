@@ -1,0 +1,53 @@
+<!-- 
+Authors: Ryan Reed, Tyler Hinthorn
+Citation for handlebars, dynamically adding, deleting, 
+and displaying data, filling dropdowns, and search box functionality:
+Copied from OSU CS340 (Intro to Databases) course: 
+Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
+-->
+
+<!-- needed for using jQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+{{!-- category table --}}
+<table id="category-table">
+
+    <thead>
+        <h2>Category Data Table</h2>
+        {{!-- for first row, print each key of the row object as a header cell --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each data}}
+        <tr data-value={{this.category_id}}>
+            <td>{{this.category_id}}</td>
+            <td>{{this.sport}}</td>
+            <td><button onclick="deleteCategory({{this.category_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{!-- link to script for handling category deletion --}}
+<script src="./js/delete_category.js"></script>
+
+<h3>Add a Category</h3>
+<p>To add a new category (sport), please enter the information below and click 'Submit'</p>
+{{!-- Form to add an entry to the category table --}}
+<form id="add-category-form-ajax">
+    <label for="input-sport">Sport: </label>
+    <input type="text" name="input-sport" id="input-sport" placeholder="Enter Sport/Category">
+
+    <input type="submit">
+</form>
+
+{{!-- link to script for adding a category --}}
+<script src="./js/add_category.js"></script>
