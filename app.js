@@ -356,7 +356,7 @@ app.post('/add-product-invoice-ajax', function (req, res) {
 });
 
 //********************************************************
-// DELETE INVOICE
+// DELETE ROUTES
 //********************************************************
 
 // DELETE Invoice
